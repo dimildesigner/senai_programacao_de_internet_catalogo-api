@@ -14,18 +14,58 @@ app.get("/", (req, res) => {
   res.json({ status: "ok", name: "Catalogo API" })
 })
 
+// Health check (recomendado)
+app.get("/health", (req, res) => {
+  res.status(200).json({ status: "UP" })
+})
+
 app.use("/api/categories", categoriesRoutes)
 app.use("/api/products", productsRoutes)
 
-const port = process.env.PORT || 3000
+const PORT = process.env.PORT || 3000
 
 initDb()
   .then(() => {
-    app.listen(port, () => {
-      console.log(`Catalogo API rodando na porta ${port}`)
+    app.listen(PORT, () => {
+      console.log(`🚀 Catalogo API rodando na porta ${PORT}`)
     })
   })
   .catch(err => {
-    console.error("Falha ao iniciar o banco:", err)
+    console.error("❌ Falha ao iniciar o banco:")
+    console.error(err)
     process.exit(1)
   })
+
+// *** Arquivo anterior ***
+
+// const express = require("express")
+// require("dotenv").config()
+
+// const { initDb } = require("./db")
+
+// const categoriesRoutes = require("./routes/categories.routes")
+// const productsRoutes = require("./routes/products.routes")
+
+// const app = express()
+
+// app.use(express.json())
+
+// app.get("/", (req, res) => {
+//   res.json({ status: "ok", name: "Catalogo API" })
+// })
+
+// app.use("/api/categories", categoriesRoutes)
+// app.use("/api/products", productsRoutes)
+
+// const port = process.env.PORT || 3000
+
+// initDb()
+//   .then(() => {
+//     app.listen(port, () => {
+//       console.log(`Catalogo API rodando na porta ${port}`)
+//     })
+//   })
+//   .catch(err => {
+//     console.error("Falha ao iniciar o banco:", err)
+//     process.exit(1)
+//   })

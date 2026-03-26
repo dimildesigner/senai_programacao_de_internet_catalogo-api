@@ -3,9 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "commonjs",
   "scripts": {
+    "start": "node src/server.js",
     "dev": "nodemon src/server.js",
-    "start": "node src/server.js"
+    "postinstall": "npm rebuild sqlite3"
+  },
+  "engines": {
+    "node": "20.x"
   },
   "repository": {
     "type": "git",
@@ -14,15 +19,15 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
   "bugs": {
     "url": "https://github.com/dimildesigner/senai_programacao_de_internet_catalogo-api/issues"
   },
   "homepage": "https://github.com/dimildesigner/senai_programacao_de_internet_catalogo-api#readme",
   "dependencies": {
+    "cors": "^2.8.6",
     "dotenv": "^17.3.1",
     "express": "^5.2.1",
-    "sqlite3": "^6.0.1"
+    "sqlite3": "5.1.7"
   },
   "devDependencies": {
     "nodemon": "^3.1.14"
